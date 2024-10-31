@@ -35,17 +35,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # - name: Build and push Docker Image
-      #   uses: docker/build-push-action@v6
-      #   with:
-      #     context: .
-      #     push: true
-
-      #     tags: raksmeykoung/nginx:lates
-      # - name: Build and push frontend image
-      #   run: |
-      #     docker build -t raksmeykoung/nginx:latest .
-      #     docker push raksmeykoung/nginx:latest
       - name: Build and push Docker Image
         uses: docker/build-push-action@v6
         with:
@@ -54,6 +43,24 @@ jobs:
           tags: raksmeykoung/nginx:latest
           build-args: |
             BUILDKIT_DEBUG=1
+
+      - name: Set up SSH key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > deploy_key.pem
+          chmod 600 deploy_key.pem
+
+      - name: Deploy to EC2
+        env:
+          SSH_HOST: "ec2-98-84-137-108.compute-1.amazonaws.com"
+          SSH_USERNAME: "ubuntu"
+        run: |
+          ssh -i deploy_key.pem -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST << 'EOF'
+            docker-compose -f /path/to/docker-compose.yml pull
+            docker-compose -f /path/to/docker-compose.yml up -d --remove-orphans
+          EOF
+
+      - name: Clean up SSH key
+        run: rm deploy_key.pem
 
       - name: Run a one-line script
         run: echo Hello, world!
