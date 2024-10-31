@@ -52,6 +52,8 @@ jobs:
           context: .
           push: true
           tags: raksmeykoung/nginx:latest
+          build-args: |
+            BUILDKIT_DEBUG=1
 
       - name: Run a one-line script
         run: echo Hello, world!
