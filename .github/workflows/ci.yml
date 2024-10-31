@@ -58,6 +58,8 @@ jobs:
             # Commands that run on the remote server
             echo "Running some commands on the remote server"
             docker ps -a 
+            docker restart 7ac60dad178d   
+            docker ps -a
           EOF
 
       - name: Clean up SSH key
