@@ -43,7 +43,7 @@ jobs:
       #     tags: raksmeykoung/nginx:lates
       - name: Build and push frontend image
         run: |
-          docker build -t raksmeykoung/nginx:latest ./nginx
+          docker build -t raksmeykoung/nginx:latest .
           docker push raksmeykoung/nginx:latest
 
       - name: Run a one-line script
