@@ -38,7 +38,7 @@ jobs:
       - name: Build and push Docker Image
         uses: docker/build-push-action@v6
         with:
-          context: ./nginx
+          context: .
           push: true
           tags: raksmeykoung/nginx:latest
           build-args: |
