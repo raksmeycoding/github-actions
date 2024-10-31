@@ -55,7 +55,9 @@ jobs:
           SSH_USERNAME: "ubuntu"
         run: |
           ssh -i deploy_key.pem -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST << 'EOF'
-            ls -l
+            # Commands that run on the remote server
+            echo "Running some commands on the remote server"
+            docker ps -a 
           EOF
 
       - name: Clean up SSH key
