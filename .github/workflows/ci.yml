@@ -55,8 +55,7 @@ jobs:
           SSH_USERNAME: "ubuntu"
         run: |
           ssh -i deploy_key.pem -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST << 'EOF'
-            docker-compose -f /path/to/docker-compose.yml pull
-            docker-compose -f /path/to/docker-compose.yml up -d --remove-orphans
+            ls -l
           EOF
 
       - name: Clean up SSH key

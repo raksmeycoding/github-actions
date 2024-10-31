@@ -1,0 +1,2 @@
+# docker-compose -f /path/to/docker-compose.yml pull
+# docker-compose -f /path/to/docker-compose.yml up -d --remove-orphans
