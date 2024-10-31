@@ -13,7 +13,7 @@ FROM nginx:alpine
 
 
 # Copy custom HTML files to Nginx's default public directory
-COPY ./front-end /usr/share/nginx/html
+COPY ../front-end/index.html /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
