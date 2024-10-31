@@ -8,7 +8,5 @@
 # COPY html /usr/share/nginx/html
 
 
-
-
 # Use the official Nginx image
 FROM nginx:alpine
