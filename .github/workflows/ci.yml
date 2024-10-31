@@ -42,10 +42,16 @@ jobs:
       #     push: true
 
       #     tags: raksmeykoung/nginx:lates
-      - name: Build and push frontend image
-        run: |
-          docker build -t raksmeykoung/nginx:latest .
-          docker push raksmeykoung/nginx:latest
+      # - name: Build and push frontend image
+      #   run: |
+      #     docker build -t raksmeykoung/nginx:latest .
+      #     docker push raksmeykoung/nginx:latest
+      - name: Build and push Docker Image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: raksmeykoung/nginx:latest
 
       - name: Run a one-line script
         run: echo Hello, world!
