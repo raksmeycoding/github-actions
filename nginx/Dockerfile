@@ -10,3 +10,10 @@
 
 # Use the official Nginx image
 FROM nginx:alpine
+
+
+# Copy custom HTML files to Nginx's default public directory
+COPY /front-end /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
